@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Merriweather&family=PT+Sans&family=Poppins:ital,wght@1,600&display=swap');
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Mono', monospace;
+  font-family: 'Merriweather', serif;
+  font-family: 'Poppins', sans-serif;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #7C4E29;
+  background-color: #eeeeee;
+}
+
+.hidden {
+  display: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  background-color: #7C4E29;
+  margin-bottom: 1.5em;
+  min-width: 600px;
+}
+
+#nav-pad {
+  width: calc(50% - 320px);
+  min-width: 2.5%;
+}
+
+#nav-logo{
+  width: 11em;
+  padding: .25em;
+}
+
+#gh-logo{
+  width: 2.2em;
+  padding: .2em;
+  left: 800px;
+}
+
+.to-right {
+  margin-left: auto;
+}
+
+.nav-link {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  padding: .5em;
+  padding-left: 1.5em;
+  padding-right: 0;
+  color: #E6B17E;
+  font-size: 1rem;
+}
+
+#page {
+  width: 95%;
+  margin: auto;
+  max-width: 640px;
+}
+
+div#footer {
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  color:#E6B17E;
+  background:#7C4E29;
+  padding:8px;
+  text-align: center;
+}
