@@ -2,7 +2,7 @@ namespace Factory.Models;
 
 public class Machine
 {
-  public int EngineerId { get; set; }
+  public int MachineId { get; set; }
   public string Name { get; set; }
   public string SerialNumber { get; set; }
   public MachineStatus MachineStatus { get; set; }
