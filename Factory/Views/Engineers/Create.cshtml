@@ -1,0 +1,25 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<h4>Add New Engineer</h4>
+<hr/>
+@using (Html.BeginForm())
+{
+  @Html.TextBoxFor(model => model.Name, new {autofocus="autofocus", required="required", @class="text-input", placeholder="Engineer Name"})
+  <br>
+  <br>
+  @Html.LabelFor(model => model.HireDate, null, new {@class="wide-label"})
+  @Html.TextBox("hireDate", null, new {type="date", @class="wide-input"})
+  <br>
+  @Html.HiddenFor(model => model.TerminationDate, null)
+  @Html.HiddenFor(model => model.RehireDate, null)
+  <br>
+
+  <input type="submit" value="Add this engineer" class="btn btn-primary" />
+}
+
+<br>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

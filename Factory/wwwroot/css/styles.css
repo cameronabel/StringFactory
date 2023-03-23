@@ -107,3 +107,24 @@ h2 {
   display: inline-block;
   padding-right: 10px;
 }
+
+.text-input {
+  border-radius: 6px;
+  border-color: #7C4E29;
+  font-size: 1.5rem;
+  padding-left: calc(0.5rem - 3px);
+  margin-top: .5rem;
+}
+
+::placeholder {
+  opacity: 0.4;
+  color: #5E503F;
+}
+
+.wide-label {
+  width: 8rem;
+}
+
+.wide-input {
+  width: 9.5rem;
+}

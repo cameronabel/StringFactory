@@ -1,13 +1,30 @@
 @{
   Layout = "_Layout";
 }
+@using Factory.Models;
 
 <h1>String Factory Management</h1>
 <hr/>
 <br>
 <div class="wrapper">
-  <div class="one"><h2>Engineers</h2><span>(add new)</span></div>
+  <div class="one">
+    <h2>Engineers</h2>
+    <span>@Html.ActionLink("(add new)", "Create", "Engineers")</span>
+  </div>
   <div class="two"><h2>Machines</h2><span>(add new)</span></div>
-  <div class="three"></div>
-  <div class="four"></div>
+  <div class="three">
+    @foreach (Engineer engineer in ViewBag.Engineers)
+    {
+      @if(engineer.Status == EmployeeStatus.Active)
+      {
+        <li>@Html.ActionLink($"{engineer.Name}", "Details", new {id = engineer.EngineerId})</li>
+      }
+    }
+  </div>
+  <div class="four">
+    @foreach (Machine machine in ViewBag.Machines)
+    {
+      <li>@Html.ActionLink($"{machine.Name}", "Details", new {id = machine.MachineId})</li>
+    }
+  </div>
 </div>
