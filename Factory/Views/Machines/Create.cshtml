@@ -1,0 +1,18 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h4>Add New Machine</h4>
+<hr/>
+@using (Html.BeginForm())
+{
+  @Html.TextBoxFor(model => model.Name, new {autofocus="autofocus", required="required", @class="text-input", placeholder="Machine Name"})
+  <br>
+  <br>
+  <input type="submit" value="Add this machine" class="btn btn-primary" />
+}
+
+<br>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

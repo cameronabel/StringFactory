@@ -11,7 +11,10 @@
     <h2>Engineers</h2>
     <span>@Html.ActionLink("(add new)", "Create", "Engineers")</span>
   </div>
-  <div class="two"><h2>Machines</h2><span>(add new)</span></div>
+  <div class="two">
+    <h2>Machines</h2>
+    <span>@Html.ActionLink("(add new)", "Create", "Machines")</span>
+  </div>
   <div class="three">
     @foreach (Engineer engineer in ViewBag.Engineers)
     {
