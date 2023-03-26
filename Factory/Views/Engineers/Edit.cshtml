@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+@using Factory.Models
+
+<h4>Edit Engineer</h4>
+<hr/>
+
+<h4>Edit this Engineer: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+  <br>
+  <br>
+  <p>Repair Certifications (ctrl-click to select multiple):</p>
+  <select name="machines" id="machines" class="select" multiple >
+    @foreach(Machine machine in ViewBag.Machines)
+    {
+      <option value=@machine.MachineId selected=@Model.JoinEntities.Select(join => join.MachineId).Contains(machine.MachineId)>@machine.Name</option>
+    }
+  </select>
+  <br>
+  <input type="submit" value="Save" />
+}
+
+<br>
+<p>@Html.ActionLink("Back to details", "Details", new {id = Model.EngineerId})</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
