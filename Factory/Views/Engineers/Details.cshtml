@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+@using Factory.Models
+
+<h2>Engineer Details</h2>
+<hr />
+<div class="wrapper">
+  <div class="three">
+    <h4>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h4>
+    @if(Model.JoinEntities.Count == 0)
+    {
+      <p>This engineer is not certified to repair any machines.</p>
+    }
+    else
+    {
+      <h5>This engineer is certified to repair:</h5>
+      <ul>
+        @foreach(EngineerMachine join in Model.JoinEntities)
+        {
+          <li>@Html.ActionLink(join.Machine.Name, "Details", "Machines")</li>
+        }
+      </ul>
+    }
+    
+  </div>
+  <div class="four">
+    <h4>@Html.DisplayNameFor(model => model.HireDate):</h4>
+    @Model.HireDate?.ToString("yyyy-MM-dd")
+    <h4>@Html.DisplayNameFor(model => model.Status): @Html.DisplayFor(model => model.Status)</h4>
+  </div>
+</div>
+<br>
+
+<p>@Html.ActionLink("Edit Engineer", "Edit", null, new { id = Model.EngineerId})</p>
+<p>@Html.ActionLink("Delete Engineer", "Delete", null, new { id = Model.EngineerId})</p>
+<p>@Html.ActionLink("Back Home", "Index", "Home")</p>

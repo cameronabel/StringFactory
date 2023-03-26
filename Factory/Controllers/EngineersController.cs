@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using Factory.Models;
 
@@ -11,6 +12,15 @@ public class EngineersController : Controller
   public EngineersController(FactoryContext db)
   {
     _db = db;
+  }
+
+  public ActionResult Details(int id)
+  {
+    Engineer engineer = _db.Engineers
+                          .Include(engineer => engineer.JoinEntities)
+                          .ThenInclude(join => join.Machine)
+                          .FirstOrDefault(engineer => engineer.EngineerId == id);
+    return View(engineer);
   }
 
   public ActionResult Create()

@@ -20,7 +20,7 @@
     {
       @if(engineer.Status == EmployeeStatus.Active)
       {
-        <li>@Html.ActionLink($"{engineer.Name}", "Details", new {id = engineer.EngineerId})</li>
+        <li>@Html.ActionLink($"{engineer.Name}", "Details", "Engineers", new {id = engineer.EngineerId})</li>
       }
     }
   </div>

@@ -35,6 +35,9 @@ nav {
 #nav-logo{
   width: 11em;
   padding: .25em;
+  text-decoration: none;
+  color:#eeeeee;
+  font-size: 1.75em;;
 }
 
 #gh-logo{
@@ -94,13 +97,14 @@ div#footer {
   grid-column: 1;
   grid-row: 2;
   border-right: solid #5E503FAA 1px;
-  
+  padding-left: 40px;
 }
 .four {
   grid-column: 2;
   grid-row: 2;
   border-left: solid #5E503FAA 1px;
-  min-height: 400px;
+  min-height: 200px;
+  padding-left: 40px;
 }
 
 h2 {

@@ -12,12 +12,9 @@
   <br>
   <br>
   @Html.LabelFor(model => model.HireDate, null, new {@class="wide-label"})
-  @Html.TextBox("hireDate", null, new {type="date", @class="wide-input"})
+  @Html.TextBox("hireDate", null, new {type="date", @class="wide-input", required="required"})
   <br>
-  @Html.HiddenFor(model => model.TerminationDate, null)
-  @Html.HiddenFor(model => model.RehireDate, null)
   <br>
-
   <input type="submit" value="Add this engineer" class="btn btn-primary" />
 }
 
