@@ -144,3 +144,23 @@ li {
 .three ul {
   list-style-type: none !important;
 }
+
+.Deployed {
+  color: green;
+}
+
+.Reserve {
+  color: yellow;
+}
+
+.Down {
+  color: red;
+}
+
+.machines a:link {
+  color: inherit;
+}
+
+.machines a:visited {
+  color: inherit;
+}

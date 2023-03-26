@@ -24,10 +24,10 @@
       }
     }
   </div>
-  <div class="four">
+  <div class="four machines">
     @foreach (Machine machine in ViewBag.Machines)
     {
-      <li>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new {id = machine.MachineId})</li>
+      <li class=@machine.MachineStatus>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new {id = machine.MachineId})</li>
     }
   </div>
 </div>

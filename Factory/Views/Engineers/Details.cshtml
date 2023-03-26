@@ -8,8 +8,9 @@
 <h2>Engineer Details</h2>
 <hr />
 <div class="wrapper">
-  <div class="three">
+  <div class="three machines">
     <h4>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h4>
+    <br>
     @if(Model.JoinEntities.Count == 0)
     {
       <p>This engineer is not certified to repair any machines.</p>
@@ -20,7 +21,7 @@
       <ul>
         @foreach(EngineerMachine join in Model.JoinEntities)
         {
-          <li>@Html.ActionLink(join.Machine.Name, "Details", "Machines", new { id = join.Machine.MachineId})</li>
+          <li class=@join.Machine.MachineStatus>@Html.ActionLink(join.Machine.Name, "Details", "Machines", new { id = join.Machine.MachineId})</li>
         }
       </ul>
     }
