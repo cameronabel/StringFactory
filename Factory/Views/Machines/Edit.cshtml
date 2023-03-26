@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+@using Factory.Models
+
+<h4>Edit Machine</h4>
+<hr/>
+
+<h4>Edit this Machine: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+  <br>
+  <br>
+  <p>Machine Status:</p>
+  @Html.DropDownListFor(model => model.MachineStatus,
+  new SelectList(Enum.GetValues(typeof(MachineStatus))),
+  "Select Status",
+  new { required="required"})
+  <br>
+  <input type="submit" value="Save" />
+}
+
+<br>
+<p>@Html.ActionLink("Back to details", "Details", new {id = Model.MachineId})</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -132,3 +132,15 @@ h2 {
 .wide-input {
   width: 9.5rem;
 }
+
+ul {
+  list-style-type: none !important;
+}
+
+li {
+  display: list-item;
+}
+
+.three ul {
+  list-style-type: none !important;
+}
