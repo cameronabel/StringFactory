@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using Factory.Models;
 
@@ -11,6 +12,15 @@ public class MachinesController : Controller
   public MachinesController(FactoryContext db)
   {
     _db = db;
+  }
+
+  public ActionResult Details(int id)
+  {
+    Machine machine = _db.Machines
+                          .Include(machine => machine.JoinEntities)
+                          .ThenInclude(join => join.Engineer)
+                          .FirstOrDefault(machine => machine.MachineId == id);
+    return View(machine);
   }
 
   public ActionResult Create()

@@ -55,7 +55,6 @@ public class EngineersController : Controller
                               .ThenInclude(join => join.Machine)
                               .FirstOrDefault(engineer => engineer.EngineerId == engineerId);
     thisEngineer.Name = name;
-    // IEnumerable<EngineerMachine> joins = _db.EngineerMachines.Include(join => join.EngineerId == engineerId);
 
     foreach (EngineerMachine join in thisEngineer.JoinEntities)
     {
@@ -64,6 +63,7 @@ public class EngineersController : Controller
         _db.EngineerMachines.Remove(join);
       }
     }
+
     foreach (int machineId in machines)
     {
       LinkMachine(thisEngineer, machineId);
