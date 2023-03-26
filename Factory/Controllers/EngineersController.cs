@@ -50,12 +50,25 @@ public class EngineersController : Controller
   [HttpPost]
   public ActionResult Edit(int engineerId, string name, List<int> machines)
   {
-    Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == engineerId);
+    Engineer thisEngineer = _db.Engineers
+                              .Include(engineer => engineer.JoinEntities)
+                              .ThenInclude(join => join.Machine)
+                              .FirstOrDefault(engineer => engineer.EngineerId == engineerId);
     thisEngineer.Name = name;
+    // IEnumerable<EngineerMachine> joins = _db.EngineerMachines.Include(join => join.EngineerId == engineerId);
+
+    foreach (EngineerMachine join in thisEngineer.JoinEntities)
+    {
+      if (!machines.Contains(join.MachineId))
+      {
+        _db.EngineerMachines.Remove(join);
+      }
+    }
     foreach (int machineId in machines)
     {
       LinkMachine(thisEngineer, machineId);
     }
+
     _db.Engineers.Update(thisEngineer);
     _db.SaveChanges();
     return RedirectToAction("Index", "Home");
@@ -72,5 +85,19 @@ public class EngineersController : Controller
       _db.EngineerMachines.Add(new EngineerMachine() { EngineerId = engineer.EngineerId, MachineId = machineId });
       _db.SaveChanges();
     }
+  }
+  public ActionResult Delete(int id)
+  {
+    Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+    return View(thisEngineer);
+  }
+
+  [HttpPost, ActionName("Delete")]
+  public ActionResult DeleteConfirmed(int id)
+  {
+    Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+    _db.Engineers.Remove(thisEngineer);
+    _db.SaveChanges();
+    return RedirectToAction("Index", "Home");
   }
 }
