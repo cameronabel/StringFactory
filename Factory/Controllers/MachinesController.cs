@@ -39,16 +39,53 @@ public class MachinesController : Controller
 
   public ActionResult Edit(int id)
   {
-    Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+    Machine thisMachine = _db.Machines
+                            .Include(machine => machine.JoinEntities)
+                            .ThenInclude(join => join.Engineer)
+                            .FirstOrDefault(machine => machine.MachineId == id);
+    ViewBag.Engineers = _db.Engineers.ToList();
     return View(thisMachine);
   }
 
   [HttpPost]
-  public ActionResult Edit(Machine machine)
+  public ActionResult Edit(int machineId, string name, List<int> engineers, MachineStatus machineStatus)
   {
-    _db.Machines.Update(machine);
+    Machine thisMachine = _db.Machines
+                              .Include(machine => machine.JoinEntities)
+                              .ThenInclude(join => join.Engineer)
+                              .FirstOrDefault(machine => machine.MachineId == machineId);
+    thisMachine.Name = name;
+    thisMachine.MachineStatus = machineStatus;
+
+    foreach (EngineerMachine join in thisMachine.JoinEntities)
+    {
+      if (!engineers.Contains(join.EngineerId))
+      {
+        _db.EngineerMachines.Remove(join);
+      }
+    }
+
+    foreach (int engineerId in engineers)
+    {
+      LinkEngineer(thisMachine, engineerId);
+    }
+
+    _db.Machines.Update(thisMachine);
     _db.SaveChanges();
     return RedirectToAction("Index", "Home");
+  }
+
+  [HttpPost]
+  public void LinkEngineer(Machine machine, int engineerId)
+  {
+#nullable enable
+    EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.MachineId == machine.MachineId && join.EngineerId == engineerId));
+    if (joinEntity == null && engineerId != 0)
+#nullable disable
+    {
+      _db.EngineerMachines.Add(new EngineerMachine() { EngineerId = engineerId, MachineId = machine.MachineId });
+      _db.SaveChanges();
+    }
   }
 
   public ActionResult Delete(int id)

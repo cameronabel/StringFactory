@@ -24,6 +24,15 @@
   "Select Status",
   new { required="required"})
   <br>
+  <br>
+  <p>Certified Repair Engineers (ctrl-click to select multiple):</p>
+  <select name="engineers" id="engineers" class="select" multiple >
+    @foreach(Engineer engineer in ViewBag.Engineers)
+    {
+      <option value=@engineer.EngineerId selected=@Model.JoinEntities.Select(join => join.EngineerId).Contains(engineer.EngineerId)>@engineer.Name</option>
+    }
+  </select>
+  <br>
   <input type="submit" value="Save" />
 }
 
