@@ -49,5 +49,3 @@ Report bugs [here](mailto:cameronabel@gmail.com)
 _MIT_
 
 Copyright (c) _2023_ _Cameron Abel_
-
-## Image Credits
